@@ -1,26 +1,56 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Euphonium : MonoBehaviour
 {
-    /// <summary>
-    /// 活塞活动记录
-    /// </summary>
-    public string[] Psitons;
-    
-    
-    
-    private Animator animator;
+    public GameObject euphoModel;
 
+
+    public Transform Panding;
+    public Transform gameBody;
+
+    public CanvasGroup endCanvas;
+    
     /// <summary>
     /// 活塞  0=1键J/左箭头 ；1=2键K/下箭头；2=3键L/右箭头
     /// </summary>
     public Transform[] PsitonsTransforms;
 
-    public Transform sliderBirthPlace;
+    /// <summary>
+    /// 0=1键J/左箭头 ；1=2键K/下箭头；2=3键L/右箭头
+    /// </summary>
+    public GameObject[] sliders;
+
+    /// <summary>
+    /// 所有滑块，都是这个的子物体。游戏开始后是sliderParent滑动  
+    /// </summary>
+    public Transform sliderParent;
+
+    public UnityEvent onInitialization = new UnityEvent();
+    public UnityEvent onPressedInTime = new UnityEvent();
+    public UnityEvent onMiss = new UnityEvent();
+    public UnityEvent watchVideo = new UnityEvent();
+    public UnityEvent showAchievement = new UnityEvent();
+
+    /// <summary>
+    /// 活塞活动记录
+    /// </summary>
+    private YamlReadWrite.PsitonsAction psitonsAction;
     
+    /// <summary>
+    /// 三个轨道滑块的出生位置（local，相对于GameBody）， 0=1键J/左箭头 ；1=2键K/下箭头；2=3键L/右箭头
+    /// </summary>
+    private Vector3[] sliderBirthPlace = new Vector3[3];
+    //sliderBirthPlace：位置是上一个滑块的后面的空白的最右侧位置。相当于下一个滑块的出生位置
+
+
+    /// <summary>
+    /// 在判定方块那里产生射线的起始位置，以进行判定    0=1键J/左箭头 ；1=2键K/下箭头；2=3键L/右箭头
+    /// </summary>
+    private Vector3[] panDingRaycast = new Vector3[3];
+
     /// <summary>
     /// 0=1键J/左箭头 ；1=2键K/下箭头；2=3键L/右箭头
     /// </summary>
@@ -34,36 +64,82 @@ public class Euphonium : MonoBehaviour
     /// <summary>
     /// 活塞被按下去时，的Z坐标（Local）
     /// </summary>
-    private  Vector3[] pressedPsitonZ = new Vector3[3];
+    private Vector3[] pressedPsitonZ = new Vector3[3];
 
-    private float TimeDelta;
     
-    private void Awake()
+    
+    private float TimeDelta;
+
+    /// <summary>
+    /// 阶段
+    /// </summary>
+    private int episode;
+    
+    
+
+    private void Start()
     {
-       
-        animator = GetComponent<Animator>();
-        
+       //初始化
+        Initialization();
+        //解析活塞记录
+        ParsePsitons(0);
+        ParsePsitons(1);
+        ParsePsitons(2);
+
         //缓存未被按下和被按下的活塞的局部坐标
         for (int i = 0; i < 3; i++)
         {
             unpressedPsitonsZ[i] = new Vector3(PsitonsTransforms[i].localPosition.x,
                 PsitonsTransforms[i].localPosition.y, -0.6273391F);
             pressedPsitonZ[i] = new Vector3(PsitonsTransforms[i].localPosition.x,
-                PsitonsTransforms[i].localPosition.y,  -0.55f);
+                PsitonsTransforms[i].localPosition.y, -0.55f);
         }
+
+        StaticVideoPlayer.Play();
+
     }
 
-   
 
     // Update is called once per frame
-    void Update()
+    public void Update()
     {
+        if (!StaticVideoPlayer.isPlaying) return;
+        
+        TimeDelta = Time.deltaTime;
+
+       
+        float alpha1;
+        switch (StaticVideoPlayer.frame)
+        {
+            //前半段，玩家吹上低音号
+            case < 4360:
+                sliderParent.Translate(TimeDelta * 0.12F * Vector3.left, Space.Self);
+                sliderParent.localPosition = new Vector3(sliderParent.localPosition.x, 0F, 0.005F);
+                break;
+            //后面看视频结束
+            case >= 4419 when episode == 0:
+              euphoModel.SetActive(false);
+              gameBody.gameObject.SetActive(false);
+              episode++;
+              watchVideo.Invoke();
+               break;
+            //视频放完，结算画面
+            case >= 5292 when  (alpha1 = endCanvas.alpha) <= 0.9f:
+                episode++;
+                if(endCanvas.alpha <= 0.001f) showAchievement.Invoke();
+                endCanvas.alpha = Mathf.Lerp(alpha1, 1, 0.1f); 
+               break;
+        }
+        
+     
+
+      
+
         _keyDown[0] = Input.GetKey(KeyCode.J) || Input.GetKey(KeyCode.LeftArrow);
         _keyDown[1] = Input.GetKey(KeyCode.K) || Input.GetKey(KeyCode.DownArrow);
         _keyDown[2] = Input.GetKey(KeyCode.L) || Input.GetKey(KeyCode.RightArrow);
-        TimeDelta = Time.deltaTime;
-        
-        
+
+
         for (int i = 0; i < 3; i++)
         {
             //如果某个活塞对应的按键，发生了按下或者没按下
@@ -73,59 +149,128 @@ public class Euphonium : MonoBehaviour
                     Vector3.Lerp(PsitonsTransforms[i].localPosition, pressedPsitonZ[i], 60f * TimeDelta);
             }
             else
-            {
+            {  
                 PsitonsTransforms[i].localPosition =
                     Vector3.Lerp(PsitonsTransforms[i].localPosition, unpressedPsitonsZ[i], 60f * TimeDelta);
             }
         }
-        
-     
+    }
+
+    private void FixedUpdate()
+    {
+        for (int i = 0; i < 3; i++)
+        {
+            //对层位7（note）的滑块进行射线判定
+            if (Physics.Raycast(panDingRaycast[i], Vector3.forward, 0.1f, 1 << 7))
+            {
+                //触碰期间，判断玩家是否按下相应的按键（活塞），并调用外部方法，计算准确率
+                if (_keyDown[i])
+                {
+                    onPressedInTime.Invoke();
+                }
+                else
+                {
+                    onMiss.Invoke();
+                }
+            }
+
+            
+            
+
+        }
+      
+    }
+
+
+    /// <summary>
+    /// 初始化
+    /// </summary>
+    private void Initialization()
+    {
+        //调用初始化事件
+        onInitialization.Invoke();
+        //读取活塞活动
+        psitonsAction = YamlReadWrite.Read<YamlReadWrite.PsitonsAction>(YamlReadWrite.FileName.PsitonsAction);
+        //初始化滑块的出生位置（相对于gameBody）
+        var localPosition = sliderParent.localPosition;
+        sliderBirthPlace[1] = localPosition;
+        sliderBirthPlace[2] = new Vector3(localPosition.x, 0.14f, localPosition.z);
+        sliderBirthPlace[0] = new Vector3(localPosition.x, -0.14f, localPosition.z);
+        //panDingRaycast在panding方块上位置的初始化（转为世界坐标）
+        var position = Panding.localPosition;
+        panDingRaycast[1] = Panding.position;
+        panDingRaycast[0] = gameBody.TransformPoint(new Vector3(position.x, -0.14f, position.z));
+        panDingRaycast[2] = gameBody.TransformPoint(new Vector3(position.x, 0.14f, position.z));
+      
     }
 
 
     /// <summary>
     /// 解析活塞活动记录
     /// </summary>
-    private void ParsePsitons()
+    /// <param name="psitonsActionIndex">解析第几个活塞</param>
+    private void ParsePsitons(int psitonsActionIndex)
     {
-        foreach (var Psiton in Psitons)
+        // 暂存每个解析后产生的滑块
+        Transform slider;
+
+
+
+        //把那个数组拆开
+        List<string> dividedPsitonsAction;
+        switch (psitonsActionIndex)
+        {
+            case 0:
+                dividedPsitonsAction = psitonsAction.Psiton1;
+                break;
+            case 1:
+                dividedPsitonsAction = psitonsAction.Psiton2;
+                break;
+            case 2:
+                dividedPsitonsAction = psitonsAction.Psiton3;
+                break;
+            default:
+                dividedPsitonsAction = new List<string>();
+                break;
+        }
+
+        //用于缓存锚点
+         Vector3[] anchorPoint = new Vector3[dividedPsitonsAction.Count];
+
+//计算锚点 视频帧*0.01，作为间隔
+        for (int i = 0; i < dividedPsitonsAction.Count; i++)
         {
             //分离记录
-            string[] s = Psiton.Split(":");
-            //得到位置（视频第几帧）
-            int location = int.Parse(s[0]);
-            //得到第几个塞子
-            int which = int.Parse(s[1][..1]);
-            //那个塞子是被按下去了吗
-            bool pressed = s[1].Substring(1, 1) == "P";
+            string[] s = dividedPsitonsAction[i].Split(":");
+            //储存锚点位置
+            anchorPoint[i] = new Vector3(float.Parse(s[0]) * 0.01f + sliderBirthPlace[psitonsActionIndex].x,
+                sliderBirthPlace[psitonsActionIndex].y, sliderBirthPlace[psitonsActionIndex].z);
+        }
+
+
+        //再来一遍，迫不得已了。。
+        //取一半
+        for (int i = 0; i < dividedPsitonsAction.Count; i++)
+        {
+            //i为偶数。即P（按下）
+            if (i % 2 == 0)
+            {
+                //在记录的上一个滑块尾（含空白）处生成新的滑块
+                slider = Instantiate(sliders[psitonsActionIndex], Vector3.one, gameBody.rotation, gameBody).transform;
+                //在这里修复位置
+                slider.localPosition = new Vector3((anchorPoint[i].x + anchorPoint[i + 1].x) / 2f, anchorPoint[i].y,
+                    anchorPoint[i].z);
+                //计算同组的U P之间,X的距离
+                float distance = anchorPoint[i + 1].x - anchorPoint[i].x;
+                //宽度修复，左右把U P的锚点连接起来
+                slider.localScale = new Vector3(distance, 0.122253f, 1f);
+                //父对象修复
+                slider.parent = sliderParent;
+            }
         }
     }
-
-
-
-
-
-
-#if UNITY_EDITOR
-    /// <summary>
-    /// 保存活塞活动记录
-    /// </summary>
-    public void Save()
-    {
-        
-    }
     
-    /// <summary>
-    /// 读取活塞活动记录
-    /// </summary>
-    public void Load()
-    {
-        
-    }
-    
-#endif
-
-    //这里记录一下：GameBody下的滑条（Slider，即玩家按键提示部分），单方向向右每延伸0.5，scale.x+1
-    //每个视频帧=scale.x=0.02
   
+  
+
 }
