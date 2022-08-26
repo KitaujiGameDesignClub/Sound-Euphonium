@@ -283,20 +283,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!115 &424617025
-MonoScript:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  serializedVersion: 5
-  m_Script: 
-  m_DefaultReferences: {}
-  m_Icon: {fileID: 0}
-  m_ExecutionOrder: 0
-  m_ClassName: MMD4MecanimModel
-  m_Namespace: 
 --- !u!1 &439190838
 GameObject:
   m_ObjectHideFlags: 0
@@ -381,26 +367,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!95 &523412634
-Animator:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1531859573}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 31363ef286a3bfe43b06c81e7ce79244, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &544380576
 GameObject:
   m_ObjectHideFlags: 0
@@ -417,7 +383,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &544380577
 RectTransform:
   m_ObjectHideFlags: 0
@@ -689,28 +655,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 482af93b30da7a048816a8ecabda762d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  model: {fileID: 1718524512}
-  boneID: 6
+  model: {fileID: 0}
+  boneID: -1
   ikEnabled: 0
   ikWeight: 1
-  _boneData:
-    boneAdditionalFlags: 0
-    nameJp: "\u30D4\u30B9\u30C8\u30F33(\u5148)"
-    skeletonName: 6.!joint__suton3(saki)
-    parentBoneID: 5
-    sortedBoneID: 7
-    originalParentBoneID: 5
-    originalSortedBoneID: 6
-    baseOrigin: {x: 1.2521739, y: 0.21756518, z: -1.1610001}
-    pmdBoneType: 0
-    childBoneID: 0
-    targetBoneID: 0
-    followCoef: 0
-    transformLayerID: 0
-    pmxBoneFlags: 18
-    inherenceParentBoneID: 0
-    inherenceWeight: 0
-    externalID: 0
 --- !u!213 &630153633
 Sprite:
   m_ObjectHideFlags: 0
@@ -1153,28 +1101,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 482af93b30da7a048816a8ecabda762d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  model: {fileID: 1718524512}
-  boneID: 7
+  model: {fileID: 0}
+  boneID: -1
   ikEnabled: 0
   ikWeight: 1
-  _boneData:
-    boneAdditionalFlags: 0
-    nameJp: "\u30D4\u30B9\u30C8\u30F34"
-    skeletonName: 7.joint__suton4
-    parentBoneID: 0
-    sortedBoneID: 8
-    originalParentBoneID: 0
-    originalSortedBoneID: 7
-    baseOrigin: {x: 2.3940537, y: -0.29817396, z: 0.6386089}
-    pmdBoneType: 0
-    childBoneID: 0
-    targetBoneID: 0
-    followCoef: 0
-    transformLayerID: 0
-    pmxBoneFlags: 2077
-    inherenceParentBoneID: 0
-    inherenceWeight: 0
-    externalID: 0
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -1635,11 +1565,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 9221487623916362774, guid: a8c5e2793a2e3a94ea8629e3305c97f6, type: 3}
   m_PrefabInstance: {fileID: 1531859572}
   m_PrefabAsset: {fileID: 0}
---- !u!137 &842336033 stripped
-SkinnedMeshRenderer:
-  m_CorrespondingSourceObject: {fileID: -9088593121016463278, guid: a8c5e2793a2e3a94ea8629e3305c97f6, type: 3}
-  m_PrefabInstance: {fileID: 1531859572}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &868895780
 GameObject:
   m_ObjectHideFlags: 0
@@ -1761,33 +1686,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!21 &974258557
-Material:
-  serializedVersion: 8
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: MMD4Mecanim/MMDLit-NEXTEdge-Pass4
-  m_Shader: {fileID: 4800000, guid: 684f8af9b4ff4bc459588db5b0f6275d, type: 3}
-  m_ValidKeywords: []
-  m_InvalidKeywords: []
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 2001
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs: []
-    m_Ints: []
-    m_Floats:
-    - _EdgeSize: 0.005
-    - _PostfixRenderQueue: 1
-    m_Colors:
-    - _EdgeColor: {r: 0.4, g: 1, b: 1, a: 1}
-  m_BuildTextureStacks: []
 --- !u!1 &1000320854
 GameObject:
   m_ObjectHideFlags: 0
@@ -2233,28 +2131,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 482af93b30da7a048816a8ecabda762d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  model: {fileID: 1718524512}
-  boneID: 8
+  model: {fileID: 0}
+  boneID: -1
   ikEnabled: 0
   ikWeight: 1
-  _boneData:
-    boneAdditionalFlags: 0
-    nameJp: "\u30D4\u30B9\u30C8\u30F34(\u5148)"
-    skeletonName: 8.!joint__suton4(saki)
-    parentBoneID: 7
-    sortedBoneID: 9
-    originalParentBoneID: 7
-    originalSortedBoneID: 8
-    baseOrigin: {x: 2.1770132, y: -0.29817396, z: 0.7020003}
-    pmdBoneType: 0
-    childBoneID: 0
-    targetBoneID: 0
-    followCoef: 0
-    transformLayerID: 0
-    pmxBoneFlags: 20
-    inherenceParentBoneID: 0
-    inherenceWeight: 0
-    externalID: 0
 --- !u!1 &1153303443
 GameObject:
   m_ObjectHideFlags: 0
@@ -3266,6 +3146,10 @@ PrefabInstance:
       value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 458523686202102254, guid: a8c5e2793a2e3a94ea8629e3305c97f6, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 458523686202102254, guid: a8c5e2793a2e3a94ea8629e3305c97f6, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -3418,28 +3302,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 482af93b30da7a048816a8ecabda762d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  model: {fileID: 1718524512}
-  boneID: 3
+  model: {fileID: 0}
+  boneID: -1
   ikEnabled: 0
   ikWeight: 1
-  _boneData:
-    boneAdditionalFlags: 0
-    nameJp: "\u30D4\u30B9\u30C8\u30F32"
-    skeletonName: 3.joint__suton2
-    parentBoneID: 0
-    sortedBoneID: 4
-    originalParentBoneID: 0
-    originalSortedBoneID: 3
-    baseOrigin: {x: 0.9074349, y: 0.21756518, z: -1.5683479}
-    pmdBoneType: 0
-    childBoneID: 0
-    targetBoneID: 0
-    followCoef: 0
-    transformLayerID: 0
-    pmxBoneFlags: 2077
-    inherenceParentBoneID: 0
-    inherenceWeight: 0
-    externalID: 0
 --- !u!114 &1531859585
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3452,28 +3318,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 482af93b30da7a048816a8ecabda762d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  model: {fileID: 1718524512}
-  boneID: 2
+  model: {fileID: 0}
+  boneID: -1
   ikEnabled: 0
   ikWeight: 1
-  _boneData:
-    boneAdditionalFlags: 0
-    nameJp: "\u30D4\u30B9\u30C8\u30F31(\u5148)"
-    skeletonName: 2.!joint__suton1(saki)
-    parentBoneID: 1
-    sortedBoneID: 3
-    originalParentBoneID: 1
-    originalSortedBoneID: 2
-    baseOrigin: {x: 0.56582636, y: 0.21756518, z: -1.1610001}
-    pmdBoneType: 0
-    childBoneID: 0
-    targetBoneID: 0
-    followCoef: 0
-    transformLayerID: 0
-    pmxBoneFlags: 18
-    inherenceParentBoneID: 0
-    inherenceWeight: 0
-    externalID: 0
 --- !u!114 &1531859586
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3486,28 +3334,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 482af93b30da7a048816a8ecabda762d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  model: {fileID: 1718524512}
-  boneID: 1
+  model: {fileID: 0}
+  boneID: -1
   ikEnabled: 0
   ikWeight: 1
-  _boneData:
-    boneAdditionalFlags: 0
-    nameJp: "\u30D4\u30B9\u30C8\u30F31"
-    skeletonName: 1.joint__suton1
-    parentBoneID: 0
-    sortedBoneID: 2
-    originalParentBoneID: 0
-    originalSortedBoneID: 1
-    baseOrigin: {x: 0.56582636, y: 0.21756518, z: -1.5683479}
-    pmdBoneType: 0
-    childBoneID: 0
-    targetBoneID: 0
-    followCoef: 0
-    transformLayerID: 0
-    pmxBoneFlags: 2077
-    inherenceParentBoneID: 0
-    inherenceWeight: 0
-    externalID: 0
 --- !u!114 &1531859587
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3520,28 +3350,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 482af93b30da7a048816a8ecabda762d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  model: {fileID: 1718524512}
-  boneID: 0
+  model: {fileID: 0}
+  boneID: -1
   ikEnabled: 0
   ikWeight: 1
-  _boneData:
-    boneAdditionalFlags: 0
-    nameJp: "\u30BB\u30F3\u30BF\u30FC"
-    skeletonName: 0.joint_Center
-    parentBoneID: 9
-    sortedBoneID: 1
-    originalParentBoneID: -1
-    originalSortedBoneID: 0
-    baseOrigin: {x: -0, y: 0, z: -0}
-    pmdBoneType: 0
-    childBoneID: 0
-    targetBoneID: 0
-    followCoef: 0
-    transformLayerID: 0
-    pmxBoneFlags: 30
-    inherenceParentBoneID: 22002944
-    inherenceWeight: 0
-    externalID: 0
 --- !u!114 &1531859588
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3554,28 +3366,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 482af93b30da7a048816a8ecabda762d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  model: {fileID: 1718524512}
-  boneID: 9
+  model: {fileID: 0}
+  boneID: -1
   ikEnabled: 0
   ikWeight: 1
-  _boneData:
-    boneAdditionalFlags: -2147483648
-    nameJp: "\u30EB\u30FC\u30C8"
-    skeletonName: 9.!Root
-    parentBoneID: -1
-    sortedBoneID: 0
-    originalParentBoneID: -1
-    originalSortedBoneID: -1
-    baseOrigin: {x: -0, y: 0, z: -0}
-    pmdBoneType: 0
-    childBoneID: 0
-    targetBoneID: 0
-    followCoef: 0
-    transformLayerID: -1
-    pmxBoneFlags: 0
-    inherenceParentBoneID: -1
-    inherenceWeight: 0
-    externalID: -1
 --- !u!4 &1531859589 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5471968346823550677, guid: a8c5e2793a2e3a94ea8629e3305c97f6, type: 3}
@@ -3982,203 +3776,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1695738926}
   m_CullTransparentMesh: 1
---- !u!114 &1718524512
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1531859573}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 424617025}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _animator: {fileID: 523412634}
-  _playingAnim:
-    animatorStateName: 
-    animFile: {fileID: 0}
-    audioClip: {fileID: 0}
-  _prevDeltaTime: 0
-  _animMorphCategoryWeights:
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  _delayedAwakeFrame: 0
-  _isDelayedAwake: 0
-  _leftShoulderBone: {fileID: 0}
-  _rightShoulderBone: {fileID: 0}
-  _leftArmBone: {fileID: 0}
-  _rightArmBone: {fileID: 0}
-  nextEdgeMaterial_Pass4: {fileID: 974258557}
-  nextEdgeMaterial_Pass8: {fileID: 1880315632}
-  nextEdgePass: 0
-  nextEdgeSize: 1
-  nextEdgeColor:
-    r: 0.4
-    g: 1
-    b: 1
-    a: 1
-  _nextEdgeMeshRenderers: []
-  _nextEdgeSkinnedMeshRenderers: []
-  _nextEdgeVisibleCached: 0
-  _nextEdgeSizeCached: 0
-  _nextEdgeColorCached:
-    r: 0
-    g: 0
-    b: 0
-    a: 0
-  supportNEXTEdge: 0
-  _notFoundShaderNEXTPass4: 0
-  _notFoundShaderNEXTPass8: 0
-  importScale: 0.049999997
-  initializeOnAwake: 0
-  postfixRenderQueue: 1
-  renderQueueAfterSkybox: 0
-  updateWhenOffscreen: 1
-  animEnabled: 1
-  animSyncToAudio: 1
-  modelFile: {fileID: 4900000, guid: d6d6a5686a4c48349bea1281b2ea0cbb, type: 3}
-  indexFile: {fileID: 4900000, guid: 02cd74e8ad0f9eb4982150099c090a63, type: 3}
-  vertexFile: {fileID: 4900000, guid: 87fb2ace39d105441ac3dbc22488b417, type: 3}
-  audioSource: {fileID: 0}
-  animDelayedAwakeFrame: 1
-  boneInherenceEnabled: 0
-  boneMorphEnabled: 0
-  pphEnabled: 1
-  pphEnabledNoAnimation: 1
-  pphShoulderEnabled: 1
-  pphShoulderFixRate: 0.7
-  ikEnabled: 0
-  fullBodyIKEnabled: 0
-  vertexMorphEnabled: 1
-  materialMorphEnabled: 1
-  blendShapesEnabled: 1
-  xdefEnabled: 0
-  xdefNormalEnabled: 0
-  xdefMobileEnabled: 0
-  _blendShapesEnabledCache: 1
-  _pphShoulderFixRateImmediately: 0
-  generatedColliderMargin: 0.01
-  tessEnabled: 1
-  tessEdgeLengthRate: 1
-  tessPhongStrengthRate: 1
-  tessExtrusionAmountRate: 1
-  physicsEngine: 0
-  bulletPhysics:
-    joinLocalWorld: 1
-    useOriginalScale: 1
-    useCustomResetTime: 0
-    resetMorphTime: 1.8
-    resetWaitTime: 1.2
-    worldProperty:
-      accurateStep: 1
-      framePerSecond: 0
-      resetFrameRate: 0
-      limitDeltaFrames: 0
-      axisSweepDistance: 0
-      gravityScale: 10
-      gravityNoise: 0
-      gravityDirection: {x: 0, y: -1, z: 0}
-      vertexScale: 8
-      importScale: 0.01
-      worldSolverInfoNumIterations: 0
-      worldSolverInfoSplitImpulse: 1
-      worldAddFloorPlane: 0
-      optimizeSettings: 1
-      multiThreading: 1
-      multiThreadingSynchronize: 1
-      parallelDispatcher: 0
-      parallelSolver: 0
-    mmdModelProperty:
-      worldScale: 0
-      importScale: 0
-      lossyScale: {x: 1, y: 1, z: 1}
-      keepIKTargetBoneFlag: -1
-      forceIKResetBoneFlag: -1
-      enableIKSecondPassFlag: -1
-      secondPassLimitAngle: -1
-      enableIKInnerLockFlag: -1
-      enableIKInnerLockKneeFlag: -1
-      innerLockKneeClamp: -1
-      innerLockKneeRatioL: -1
-      innerLockKneeRatioU: -1
-      innerLockKneeScale: -1
-      enableIKMuscleFlag: -1
-      enableIKMuscleHipFlag: -1
-      enableIKMuscleFootFlag: -1
-      muscleHipUpperXAngle: -1
-      muscleHipLowerXAngle: -1
-      muscleHipInnerYAngle: -1
-      muscleHipOuterYAngle: -1
-      muscleHipInnerZAngle: -1
-      muscleHipOuterZAngle: -1
-      muscleFootUpperXAngle: -1
-      muscleFootLowerXAngle: -1
-      muscleFootInnerYAngle: -1
-      muscleFootOuterYAngle: -1
-      muscleFootInnerZAngle: -1
-      muscleFootOuterZAngle: -1
-      rigidBodyIsAdditionalDamping: 1
-      rigidBodyIsEnableSleeping: 0
-      rigidBodyIsUseCcd: 1
-      rigidBodyCcdMotionThreshold: 0.1
-      rigidBodyShapeScale: 1
-      rigidBodyMassRate: 1
-      rigidBodyLinearDampingRate: 1
-      rigidBodyAngularDampingRate: 1
-      rigidBodyRestitutionRate: 1
-      rigidBodyFrictionRate: 1
-      rigidBodyAntiJitterRate: 1
-      rigidBodyAntiJitterRateOnKinematic: 1
-      rigidBodyPreBoneAlignmentLimitLength: 0.01
-      rigidBodyPreBoneAlignmentLossRate: 0.01
-      rigidBodyPostBoneAlignmentLimitLength: 0.01
-      rigidBodyPostBoneAlignmentLossRate: 0.01
-      rigidBodyLinearDampingLossRate: -1
-      rigidBodyLinearDampingLimit: -1
-      rigidBodyAngularDampingLossRate: -1
-      rigidBodyAngularDampingLimit: -1
-      rigidBodyLinearVelocityLimit: -1
-      rigidBodyAngularVelocityLimit: -1
-      rigidBodyIsUseForceAngularVelocityLimit: 1
-      rigidBodyIsUseForceAngularAccelerationLimit: 1
-      rigidBodyForceAngularVelocityLimit: 600
-      rigidBodyIsAdditionalCollider: 0
-      rigidBodyAdditionalColliderBias: 0.99
-      rigidBodyIsForceTranslate: 1
-      jointRootAdditionalLimitAngle: -1
-      jointAdditionalLimitAngle: -1
-      jointAdditionalLimitForcibly: 0
-  rigidBodyList: []
-  animList: []
-  _initialized: 1
-  _rootBone: {fileID: 1531859588}
-  _sortedBoneList:
-  - {fileID: 1531859588}
-  - {fileID: 1531859587}
-  - {fileID: 1531859586}
-  - {fileID: 1531859585}
-  - {fileID: 1531859584}
-  - {fileID: 2097397244}
-  - {fileID: 2137604895}
-  - {fileID: 613019484}
-  - {fileID: 697334029}
-  - {fileID: 1109540090}
-  _meshRenderers: []
-  _skinnedMeshRenderers:
-  - {fileID: 842336033}
-  _cached_tessEnabled: 1
-  _cached_tessEdgeLengthRate: 1
-  _cached_tessPhongStrengthRate: 1
-  _cached_tessExtrusionAmountRate: 1
-  editorViewPage: 0
-  editorViewMorphBits: 15
-  editorViewRigidBodies: 0
-  editorViewMorphNameType: 0
-  _invokeed: 0
 --- !u!213 &1733957678
 Sprite:
   m_ObjectHideFlags: 0
@@ -4649,33 +4246,6 @@ MonoBehaviour:
   frameCount: {fileID: 1695738928}
   score: {fileID: 1153303445}
   showAchievement: {fileID: 1317827631}
---- !u!21 &1880315632
-Material:
-  serializedVersion: 8
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: MMD4Mecanim/MMDLit-NEXTEdge-Pass8
-  m_Shader: {fileID: 4800000, guid: ff1e1d0bbf6980244a107d25ff535f9a, type: 3}
-  m_ValidKeywords: []
-  m_InvalidKeywords: []
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 2001
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs: []
-    m_Ints: []
-    m_Floats:
-    - _EdgeSize: 0.005
-    - _PostfixRenderQueue: 1
-    m_Colors:
-    - _EdgeColor: {r: 0.4, g: 1, b: 1, a: 1}
-  m_BuildTextureStacks: []
 --- !u!1 &1923370066
 GameObject:
   m_ObjectHideFlags: 0
@@ -4932,28 +4502,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 482af93b30da7a048816a8ecabda762d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  model: {fileID: 1718524512}
-  boneID: 4
+  model: {fileID: 0}
+  boneID: -1
   ikEnabled: 0
   ikWeight: 1
-  _boneData:
-    boneAdditionalFlags: 0
-    nameJp: "\u30D4\u30B9\u30C8\u30F32(\u5148)"
-    skeletonName: 4.!joint__suton2(saki)
-    parentBoneID: 3
-    sortedBoneID: 5
-    originalParentBoneID: 3
-    originalSortedBoneID: 4
-    baseOrigin: {x: 0.9074349, y: 0.21756518, z: -1.1610001}
-    pmdBoneType: 0
-    childBoneID: 0
-    targetBoneID: 0
-    followCoef: 0
-    transformLayerID: 0
-    pmxBoneFlags: 18
-    inherenceParentBoneID: 0
-    inherenceWeight: 0
-    externalID: 0
 --- !u!114 &2137604895
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4966,28 +4518,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 482af93b30da7a048816a8ecabda762d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  model: {fileID: 1718524512}
-  boneID: 5
+  model: {fileID: 0}
+  boneID: -1
   ikEnabled: 0
   ikWeight: 1
-  _boneData:
-    boneAdditionalFlags: 0
-    nameJp: "\u30D4\u30B9\u30C8\u30F33"
-    skeletonName: 5.joint__suton3
-    parentBoneID: 0
-    sortedBoneID: 6
-    originalParentBoneID: 0
-    originalSortedBoneID: 5
-    baseOrigin: {x: 1.2521739, y: 0.21756518, z: -1.5683479}
-    pmdBoneType: 0
-    childBoneID: 0
-    targetBoneID: 0
-    followCoef: 0
-    transformLayerID: 0
-    pmxBoneFlags: 2077
-    inherenceParentBoneID: 0
-    inherenceWeight: 0
-    externalID: 0
 --- !u!4 &2137604896 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -3900717468420871019, guid: a8c5e2793a2e3a94ea8629e3305c97f6, type: 3}
