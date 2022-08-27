@@ -11,8 +11,7 @@ public class Euphonium : MonoBehaviour
     public Transform Panding;
     public Transform gameBody;
 
-    public CanvasGroup endCanvas;
-    
+
     /// <summary>
     /// 活塞  0=1键J/左箭头 ；1=2键K/下箭头；2=3键L/右箭头
     /// </summary>
@@ -38,7 +37,7 @@ public class Euphonium : MonoBehaviour
     /// 活塞活动记录
     /// </summary>
     private YamlReadWrite.PsitonsAction psitonsAction;
-    
+
     /// <summary>
     /// 三个轨道滑块的出生位置（local，相对于GameBody）， 0=1键J/左箭头 ；1=2键K/下箭头；2=3键L/右箭头
     /// </summary>
@@ -66,20 +65,18 @@ public class Euphonium : MonoBehaviour
     /// </summary>
     private Vector3[] pressedPsitonZ = new Vector3[3];
 
-    
-    
+
     private float TimeDelta;
 
     /// <summary>
     /// 阶段
     /// </summary>
     private int episode;
-    
-    
+
 
     private void Start()
     {
-       //初始化
+        //初始化
         Initialization();
         //解析活塞记录
         ParsePsitons(0);
@@ -96,7 +93,6 @@ public class Euphonium : MonoBehaviour
         }
 
         StaticVideoPlayer.Play();
-
     }
 
 
@@ -104,10 +100,10 @@ public class Euphonium : MonoBehaviour
     public void Update()
     {
         if (!StaticVideoPlayer.isPlaying) return;
-        
+
         TimeDelta = Time.deltaTime;
 
-       
+
         float alpha1;
         switch (StaticVideoPlayer.frame)
         {
@@ -118,22 +114,18 @@ public class Euphonium : MonoBehaviour
                 break;
             //后面看视频结束
             case >= 4419 when episode == 0:
-              euphoModel.SetActive(false);
-              gameBody.gameObject.SetActive(false);
-              episode++;
-              watchVideo.Invoke();
-               break;
-            //视频放完，结算画面
-            case >= 5292 when  (alpha1 = endCanvas.alpha) <= 0.9f:
+                euphoModel.SetActive(false);
+                gameBody.gameObject.SetActive(false);
                 episode++;
-                if(endCanvas.alpha <= 0.001f) showAchievement.Invoke();
-                endCanvas.alpha = Mathf.Lerp(alpha1, 1, 0.1f); 
-               break;
-        }
-        
-     
+                watchVideo.Invoke();
+                break;
+            //视频放完，结算画面
+            case >= 5292:
+                showAchievement.Invoke();
 
-      
+                break;
+        }
+
 
         _keyDown[0] = Input.GetKey(KeyCode.J) || Input.GetKey(KeyCode.LeftArrow);
         _keyDown[1] = Input.GetKey(KeyCode.K) || Input.GetKey(KeyCode.DownArrow);
@@ -149,7 +141,7 @@ public class Euphonium : MonoBehaviour
                     Vector3.Lerp(PsitonsTransforms[i].localPosition, pressedPsitonZ[i], 60f * TimeDelta);
             }
             else
-            {  
+            {
                 PsitonsTransforms[i].localPosition =
                     Vector3.Lerp(PsitonsTransforms[i].localPosition, unpressedPsitonsZ[i], 60f * TimeDelta);
             }
@@ -160,25 +152,21 @@ public class Euphonium : MonoBehaviour
     {
         for (int i = 0; i < 3; i++)
         {
-            //对层位7（note）的滑块进行射线判定
-            if (Physics.Raycast(panDingRaycast[i], Vector3.forward, 0.1f, 1 << 7))
+            //只有在射线碰上且按下按键的时候，才算俺的及时
+            if (_keyDown[i] && Physics.Raycast(panDingRaycast[i], Vector3.forward, 0.1f, 1 << 7))
             {
-                //触碰期间，判断玩家是否按下相应的按键（活塞），并调用外部方法，计算准确率
-                if (_keyDown[i])
-                {
-                    onPressedInTime.Invoke();
-                }
-                else
-                {
-                    onMiss.Invoke();
-                }
+                onPressedInTime.Invoke();
             }
-
-            
-            
-
+            //来了，没按不行
+            else if (Physics.Raycast(panDingRaycast[i], Vector3.forward, 0.1f, 1 << 7) && !_keyDown[i])
+            {
+            }
+            //提前按也不行
+            else if (!Physics.Raycast(panDingRaycast[i], Vector3.forward, 0.1f, 1 << 7) && _keyDown[i])
+            {
+                onMiss.Invoke();
+            }
         }
-      
     }
 
 
@@ -201,7 +189,6 @@ public class Euphonium : MonoBehaviour
         panDingRaycast[1] = Panding.position;
         panDingRaycast[0] = gameBody.TransformPoint(new Vector3(position.x, -0.14f, position.z));
         panDingRaycast[2] = gameBody.TransformPoint(new Vector3(position.x, 0.14f, position.z));
-      
     }
 
 
@@ -213,7 +200,6 @@ public class Euphonium : MonoBehaviour
     {
         // 暂存每个解析后产生的滑块
         Transform slider;
-
 
 
         //把那个数组拆开
@@ -235,7 +221,7 @@ public class Euphonium : MonoBehaviour
         }
 
         //用于缓存锚点
-         Vector3[] anchorPoint = new Vector3[dividedPsitonsAction.Count];
+        Vector3[] anchorPoint = new Vector3[dividedPsitonsAction.Count];
 
 //计算锚点 视频帧*0.01，作为间隔
         for (int i = 0; i < dividedPsitonsAction.Count; i++)
@@ -269,8 +255,4 @@ public class Euphonium : MonoBehaviour
             }
         }
     }
-    
-  
-  
-
 }
