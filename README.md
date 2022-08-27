@@ -1,4 +1,4 @@
-# Sound Euphonium For Juniors!
+# Sound Euphonium For Juniors!（ 吹给后辈们听《吹响吧！上低音号》）
  “下次就由黄前你吹奏这首曲子给后辈们听吧”
  
  ## 关于版权
