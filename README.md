@@ -1,6 +1,10 @@
 # Sound Euphonium For Juniors!（ 吹给后辈们听《吹响吧！上低音号》）
  “下次就由黄前你吹奏这首曲子给后辈们听吧”
  
+ 此分支为[旧版本](https://www.bilibili.com/video/BV1VP4y1f7BP)的存档
+ 
+ 
+ 
  ## 关于版权
  ### 上低音号模型：
  网站：https://ux.getuploader.com/instruments_3Dmodels/download/27
