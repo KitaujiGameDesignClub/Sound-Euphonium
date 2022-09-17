@@ -3356,7 +3356,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "R=\u91CD\u65B0\u5F00\u59CB\nESC=\u6E38\u620F\u6682\u505C\n\u624B\u673A\u7AEF\u53EF\u4EE5\u70B9\u51FB\u53F3\u4E0B\u89D2\u53F7\u4E0A\u7684\u6587\u5B57"
+  m_text: "\nESC=\u6E38\u620F\u6682\u505C\n\u624B\u673A\u7AEF\u53EF\u4EE5\u70B9\u51FB\u53F3\u4E0B\u89D2\u53F7\u4E0A\u7684\u6587\u5B57"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 26216fab0443bbf48b81c57fc633a352, type: 2}
   m_sharedMaterial: {fileID: 317546186484929211, guid: 26216fab0443bbf48b81c57fc633a352, type: 2}

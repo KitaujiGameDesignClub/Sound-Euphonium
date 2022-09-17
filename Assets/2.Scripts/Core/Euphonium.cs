@@ -119,11 +119,7 @@ public class Euphonium : MonoBehaviour
             TextUI.textUI.GamePause();
         }
 
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            TextUI.textUI.PlayAgain();
-        }
-        
+ 
         
         if (!StaticVideoPlayer.isPlaying) return;
 

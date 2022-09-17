@@ -1383,8 +1383,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -494.61075, y: -123}
-  m_SizeDelta: {x: 189.349, y: 76.34}
+  m_AnchoredPosition: {x: -538.412, y: -82}
+  m_SizeDelta: {x: 276.952, y: 95.613}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &695888625
 MonoBehaviour:
@@ -1399,7 +1399,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.5686275}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.7372549}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2560,8 +2560,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -494.61075, y: -335}
-  m_SizeDelta: {x: 189.349, y: 76.34}
+  m_AnchoredPosition: {x: -538.41, y: -344.636}
+  m_SizeDelta: {x: 276.95, y: 95.613}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &829536666
 MonoBehaviour:
@@ -2620,7 +2620,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.5686275}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.7372549}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -3828,8 +3828,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -494.61075, y: -220}
-  m_SizeDelta: {x: 189.349, y: 76.34}
+  m_AnchoredPosition: {x: -538.41, y: -212.992}
+  m_SizeDelta: {x: 276.95, y: 90.357}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1239709237
 MonoBehaviour:
@@ -3888,7 +3888,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.5686275}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.7372549}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -5309,7 +5309,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1655558410}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1813737033}
+        m_TargetAssemblyTypeName: TextUI, Core
+        m_MethodName: PlayAgain
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1655558410
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5670,9 +5682,9 @@ RectTransform:
   m_Father: {fileID: 1813737032}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 1}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -131, y: -77}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 829, y: 463}
   m_SizeDelta: {x: 216.35596, y: 100.26294}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1695738928
@@ -5790,7 +5802,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1724388176
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5831,7 +5843,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u8DF3\u8FC7"
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 26216fab0443bbf48b81c57fc633a352, type: 2}
   m_sharedMaterial: {fileID: 317546186484929211, guid: 26216fab0443bbf48b81c57fc633a352, type: 2}
@@ -5915,7 +5927,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1724388175}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
@@ -5951,7 +5963,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1724388177}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1813737033}
+        m_TargetAssemblyTypeName: TextUI, Core
+        m_MethodName: GamePause
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!213 &1733957678
 Sprite:
   m_ObjectHideFlags: 0
