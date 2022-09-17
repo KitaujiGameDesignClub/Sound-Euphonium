@@ -34,12 +34,16 @@ public class PublicAudioSource : MonoBehaviour
     
 
 
-    public static void UpdateMusicVolume()
+    public static void UpdateBackgroundMusicVolume()
     {
         Music.volume = Settings.SettingsContent.MusicVolume;
       
     }
+    public static void UpdateSoundEffectVolume()
+    {
+        Effect.volume = Settings.SettingsContent.SoundEffectVolume;
 
+    }
 
 
     // Update is called once per frame

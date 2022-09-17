@@ -17,9 +17,7 @@ public class OpeningCtrl : MonoBehaviour
 
     private void Awake()
     {
-        Application.targetFrameRate = -1;
-        //读取设置文件
-        Settings.ReadSettings();
+       
         initialization.Invoke();
     }
 
@@ -30,17 +28,15 @@ public class OpeningCtrl : MonoBehaviour
         MusicVolSlider.value = Settings.SettingsContent.MusicVolume;
         EffectVolSlider.value = Settings.SettingsContent.SoundEffectVolume;
 
-        //调整音量
-        PublicAudioSource.UpdateMusicVolume();
-        
         //注册事件
         MusicVolSlider.onValueChanged.AddListener(delegate(float arg0)
         {
-            Settings.SettingsContent.MusicVolume = arg0; PublicAudioSource.UpdateMusicVolume();
+            Settings.SettingsContent.MusicVolume = arg0; PublicAudioSource.UpdateBackgroundMusicVolume();
+            StaticVideoPlayer.UpdateVolume();
         });
         EffectVolSlider.onValueChanged.AddListener(delegate(float arg0)
         {
-            Settings.SettingsContent.SoundEffectVolume = arg0;
+            Settings.SettingsContent.SoundEffectVolume = arg0;PublicAudioSource.UpdateSoundEffectVolume();
         });
         
         //welcome淡入
@@ -74,10 +70,15 @@ public class OpeningCtrl : MonoBehaviour
     }
     
     
-    public void StartGame()
+    public void StartGame(AudioClip clip)
     {
-        
+        PlaySoundEffect(clip);
      SceneManager.LoadScene("load");
+    }
+
+    public void PlaySoundEffect(AudioClip clip)
+    {
+        PublicAudioSource.PlaySoundEffect(clip);
     }
 
  

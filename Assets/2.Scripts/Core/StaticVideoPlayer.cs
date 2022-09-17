@@ -14,18 +14,24 @@ public class StaticVideoPlayer : MonoBehaviour
     public static bool isPlaying => videoPlayer.isPlaying;
     
     
-    private AudioSource audioSource;
+    private static AudioSource audioSource;
 
-    public static void Play()
-    {
-        videoPlayer.Play();
-    }
+ 
     private void Awake()
     {
        
         videoPlayer = GetComponent<VideoPlayer>();
         audioSource = GetComponent<AudioSource>();
+        UpdateVolume();
 
+    }
+   public static void Play()
+    {
+        videoPlayer.Play();
+    }
+   
+    public static void UpdateVolume()
+    {
         audioSource.volume = Settings.SettingsContent.MusicVolume;
     }
 

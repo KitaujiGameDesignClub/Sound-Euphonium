@@ -12,6 +12,8 @@ public class Euphonium : MonoBehaviour
     public Transform gameBody;
 
 
+
+    
     /// <summary>
     /// 活塞  0=1键J/左箭头 ；1=2键K/下箭头；2=3键L/右箭头
     /// </summary>
@@ -22,6 +24,17 @@ public class Euphonium : MonoBehaviour
     /// </summary>
     public GameObject[] sliders;
 
+    /// <summary>
+    /// 粒子成功之后的粒子效果
+    /// </summary>
+    public ParticleSystem[] successParticleSystems;
+
+
+    public ScreenButton[] screenButtons;
+
+
+    public GameObject androidButton;
+    
     /// <summary>
     /// 所有滑块，都是这个的子物体。游戏开始后是sliderParent滑动  
     /// </summary>
@@ -83,6 +96,7 @@ public class Euphonium : MonoBehaviour
         ParsePsitons(1);
         ParsePsitons(2);
 
+      
         //缓存未被按下和被按下的活塞的局部坐标
         for (int i = 0; i < 3; i++)
         {
@@ -99,6 +113,18 @@ public class Euphonium : MonoBehaviour
     // Update is called once per frame
     public void Update()
     {
+       
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            TextUI.textUI.GamePause();
+        }
+
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            TextUI.textUI.PlayAgain();
+        }
+        
+        
         if (!StaticVideoPlayer.isPlaying) return;
 
         TimeDelta = Time.deltaTime;
@@ -118,19 +144,34 @@ public class Euphonium : MonoBehaviour
                 gameBody.gameObject.SetActive(false);
                 episode++;
                 watchVideo.Invoke();
+                for (int i = 0; i < 3; i++)
+                {
+                    Destroy(screenButtons[i].gameObject);
+                }
                 break;
             //视频放完，结算画面
             case >= 5292:
                 showAchievement.Invoke();
-
+                Destroy(androidButton);
                 break;
         }
 
 
+        #if UNITY_EDITOR || UNITY_STANDALONE_WIN
+        
         _keyDown[0] = Input.GetKey(KeyCode.J) || Input.GetKey(KeyCode.LeftArrow);
         _keyDown[1] = Input.GetKey(KeyCode.K) || Input.GetKey(KeyCode.DownArrow);
         _keyDown[2] = Input.GetKey(KeyCode.L) || Input.GetKey(KeyCode.RightArrow);
-
+        
+        #elif UNITY_ANDROID
+          for (int i = 0; i < 3; i++)
+        {
+            _keyDown[i] = screenButtons[i].OnPressed;
+        }
+        
+#endif
+      
+      
 
         for (int i = 0; i < 3; i++)
         {
@@ -150,16 +191,25 @@ public class Euphonium : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (Time.timeScale <= 0.5f)
+        {
+            return;
+        }
+        
         for (int i = 0; i < 3; i++)
         {
             //只有在射线碰上且按下按键的时候，才算俺的及时
             if (_keyDown[i] && Physics.Raycast(panDingRaycast[i], Vector3.forward, 0.1f, 1 << 7))
             {
                 onPressedInTime.Invoke();
+                
+                //激活粒子效果
+                successParticleSystems[i].Play();
             }
             //来了，没按不行
             else if (Physics.Raycast(panDingRaycast[i], Vector3.forward, 0.1f, 1 << 7) && !_keyDown[i])
             {
+                onMiss.Invoke();
             }
             //提前按也不行
             else if (!Physics.Raycast(panDingRaycast[i], Vector3.forward, 0.1f, 1 << 7) && _keyDown[i])
@@ -178,7 +228,25 @@ public class Euphonium : MonoBehaviour
         //调用初始化事件
         onInitialization.Invoke();
         //读取活塞活动
+#if UNITY_EDITOR || UNITY_STANDALONE_WIN
         psitonsAction = YamlReadWrite.Read<YamlReadWrite.PsitonsAction>(YamlReadWrite.FileName.PsitonsAction);
+        for (int i = 0; i < 3; i++)
+        {
+           Destroy(screenButtons[i].gameObject);
+        }
+        Destroy(androidButton);
+        #elif UNITY_ANDROID
+             psitonsAction =
+ YamlReadWrite.ReadFromResources<YamlReadWrite.PsitonsAction>(YamlReadWrite.FileName.PsitonsAction);
+          for (int i = 0; i < 3; i++)
+        {
+           screenButtons[i].gameObject.SetActive(true);
+        }
+           androidButton.SetActive(true);
+#endif
+        
+     
+       
         //初始化滑块的出生位置（相对于gameBody）
         var localPosition = sliderParent.localPosition;
         sliderBirthPlace[1] = localPosition;
@@ -254,5 +322,11 @@ public class Euphonium : MonoBehaviour
                 slider.parent = sliderParent;
             }
         }
+    }
+
+
+    public void GamePause()
+    {
+        
     }
 }
