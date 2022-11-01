@@ -1,0 +1,15 @@
+﻿# Only for 吹给后辈们听《吹响吧！上低音号》
+# fileVersion:1
+# 游戏基本设置
+MusicVolume: 0.800000012
+SoundEffectVolume: 0.800000012
+fullscreenMode: FullScreenWindow
+resolution:
+  width: 0
+  height: 0
+  refreshRate: 0
+sync: true
+antiAliasing: 1
+dithering: false
+showFps: true
+showConsole: true
