@@ -210,9 +210,9 @@ public class Euphonium : MonoBehaviour,IUpdate
         for (int i = 0; i < 3; i++)
         {
             unpressedPsitonsZ[i] = new Vector3(PsitonsTransforms[i].localPosition.x,
-                PsitonsTransforms[i].localPosition.y, -0.6273391F);
+                PsitonsTransforms[i].localPosition.y,-0.13f);
             pressedPsitonZ[i] = new Vector3(PsitonsTransforms[i].localPosition.x,
-                PsitonsTransforms[i].localPosition.y, -0.55f);
+                PsitonsTransforms[i].localPosition.y, -0.117f);
         }
 
        StaticVideoPlayer.staticVideoPlayer.Play();
@@ -281,12 +281,12 @@ public class Euphonium : MonoBehaviour,IUpdate
             if (_keyDown[i])
             {
                 PsitonsTransforms[i].localPosition =
-                    Vector3.Lerp(PsitonsTransforms[i].localPosition, pressedPsitonZ[i], 60f * TimeDelta);
+                    Vector3.Lerp(PsitonsTransforms[i].localPosition, pressedPsitonZ[i], 40f * TimeDelta);
             }
             else
             {
                 PsitonsTransforms[i].localPosition =
-                    Vector3.Lerp(PsitonsTransforms[i].localPosition, unpressedPsitonsZ[i], 60f * TimeDelta);
+                    Vector3.Lerp(PsitonsTransforms[i].localPosition, unpressedPsitonsZ[i], 40f * TimeDelta);
             }
         }
 
