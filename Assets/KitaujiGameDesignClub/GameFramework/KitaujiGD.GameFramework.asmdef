@@ -1,0 +1,21 @@
+{
+    "name": "KitaujiGD.GameFramework",
+    "rootNamespace": "",
+    "references": [
+        "GUID:b3f49edfedc855a48aa1a9e5d3cba438",
+        "GUID:6055be8ebefd69e48b49212b09b47b2f",
+        "GUID:3de88c88fbbb8f944b9210d496af9762",
+        "GUID:247a163e3cc6efb42bd22b9023b87ff3",
+        "GUID:15fc0a57446b3144c949da3e2b9737a9",
+        "GUID:cc9b1dbcea8af584ba492afeb67a12da"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
